@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
 	`ID` int NOT NULL,
 	`nazwa` text NOT NULL,
 	`cena` int NOT NULL,
-	`id_wielkosc` int NOT NULL
+	`wielkosc` text NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS `pracownicy` (
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `dodatki` (
 	`nazwa_dodatkow` text NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS `rodzaj_platnosc` (
+CREATE TABLE IF NOT EXISTS `metoda_platnosc` (
 	`ID` int NOT NULL,
 	`nazwa` text NOT NULL
 );
@@ -83,28 +83,30 @@ ALTER TABLE `zamowienia` ADD CONSTRAINT `zamowienia_fk7` FOREIGN KEY (`id_dostaw
 
 ALTER TABLE `dodatki` ADD CONSTRAINT `dodatki_fk0` FOREIGN KEY (`ID`) REFERENCES `zamowienia`(`id_dodatki`);
 
-INSERT INTO Klient(Imie) VALUES ('Bartek');
-INSERT INTO Klient(Imie) VALUES ('Hubert');
-INSERT INTO Klient(Imie) VALUES ('Dawid');
 
-INSERT INTO Klient(Nazwisko) VALUES ('Kowalski');
-INSERT INTO Klient(Nazwisko) VALUES ('Nowak');
-INSERT INTO Klient(Nazwisko) VALUES ('Pniewski');
-
-INSERT INTO Klient(Numer_telefonu) VALUES (111222333);
-INSERT INTO Klient(Numer_telefonu) VALUES (444555666);
-INSERT INTO Klient(Numer_telefonu) VALUES (777888999);
-
-INSERT INTO Klient(Adres) VALUES (`mala 8`);
-INSERT INTO Klient(Adres) VALUES (`srednia 85`);
-INSERT INTO Klient(Adres) VALUES (`duza 12`);
+INSERT INTO `menu` (`id`, `nazwa`, `cena`,`wielkosc`) VALUES
+(1,'Margherita',35,`duza`),
+(2,'Pepperoni',40,'duza'),
+(3,'Capricciosa',40,'duza'),
+(4,'Diavola',42,'duza'),
+(5,'Marinara',40,'duza');
 
 
-INSERT INTO dodatki(nazwa_dodatkow) VALUES (`ser`);
-INSERT INTO dodatki(nazwa_dodatkow) VALUES (`szynka`);
-INSERT INTO dodatki(nazwa_dodatkow) VALUES (`pieczarki`);
-INSERT INTO dodatki(nazwa_dodatkow) VALUES (`kurczak`);
-INSERT INTO dodatki(nazwa_dodatkow) VALUES (`salami`);
+INSERT INTO `dodatki` (`id`,`nazwa_dodatkow`) VALUES
+(1,'ser'),
+(2,'szynka'),
+(3,'pieczarki'),
+(4,'kurczak'),
+(5,'salami');
 
-INSERT INTO menu() VALUES (`salami`);
 
+INSERT INTO `klient` (`id`,`imie`,`nazwisko`,`numer_telefonu`,`adres`) VALUES
+(1,'bartek','kowalski',111222333,'mala 8'),
+(2,'hubert','nowak',444555666,'srednia 85'),
+(3,'dawid','pniewski',777888999,'duza 12');
+
+
+INSERT INTO `pracownicy` (`id`,`czas_pracy`,`stawka_za_godzine`,`imie`,`nazwisko`,`email`) VALUES
+(1,'4 godziny','5zl/godz','filip','switek','filipswitek123@gmail.com'),
+(2,'4godziny','5zl/godz','hubert','pasek','gubertpasek456@gmail.com'),
+(3,'4godziny','5zl/godz','bartosz','nowacki','bartosznowacki789@gmail.com');
